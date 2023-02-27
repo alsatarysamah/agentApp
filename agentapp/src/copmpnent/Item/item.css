@@ -1,0 +1,13 @@
+.item{
+    border:1px solid black;
+    margin: 1rem;
+  }
+  .item img{
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .btn-add{
+    color: black;
+    background-color: #ffc000;
+  }
