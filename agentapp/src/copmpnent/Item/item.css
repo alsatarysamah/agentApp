@@ -1,5 +1,5 @@
 .item{
-    border:1px solid black;
+    border:1px solid #ffc000;
     margin: 1rem;
   }
   .item img{
@@ -7,7 +7,4 @@
     max-width: 300px;
   }
 
-  .btn-add{
-    color: black;
-    background-color: #ffc000;
-  }
+  

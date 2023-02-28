@@ -1,51 +1,46 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { useState } from "react";
-import { toast } from "react-toastify";
-import base64 from "base-64";
-import * as axios from "axios";
-import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+// import { toast, ToastContainer } from "react-toastify";
+import {  useState } from "react";
 
+import { toast, ToastContainer } from "react-toastify";
+import superAgent from "superagent";
+import base64 from "base-64";
+import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 
 export default function Signin() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
   const submitHandler = async (e) => {
     e.preventDefault();
-
-    const options = {
-      url: "http://localhost:5000/signin",
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-        Authorization: `Basic ${base64.encode(`${email}:${password}`)}`,
-      },
-    };
-
-    axios(options)
-      .then((response) => {
-        sessionStorage.setItem("userInfo", JSON.stringify(response.data.user));
-      
-        navigate("/");
-      })
-      .catch((e) => {
-        toast.error("Invalid Username or Password");
-      });
+    try {
+     
+      const response = await superAgent
+        .post("http://localhost:4000/signin")
+        .set("authorization", `Basic ${base64.encode(`${email}:${password}`)}`);
+        console.log(response.body.user);
+      sessionStorage.setItem("userInfo", JSON.stringify(response.body.user));
+      // if (location.state) navigate(`${location.state.redirect}`);
+       navigate("/");
+    } catch (err) {
+      toast.error("invalid password or username");
+      console.log(err);
+    }
   };
-
+ 
   return (
     <Container>
       <Helmet>
         <title>Signin</title>
       </Helmet>
-      <Row className=" d-flex justify-content-center align-items-center mt-5">
+      <Row className="vh-100 d-flex justify-content-center align-items-center">
         <Col md={8} lg={5} xs={12}>
           <div className=""></div>
-
+          <ToastContainer />
           <Card className="shadow px-4">
             <Card.Body>
               <div className="mb-3 mt-md-4">
@@ -62,7 +57,11 @@ export default function Signin() {
                         required
                       />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Group
+                      className="mb-3"
+                      controlId="formBasicPas
+                  sword"
+                    >
                       <Form.Label className="text-center">Password</Form.Label>
                       <Form.Control
                         type="password"
@@ -74,11 +73,7 @@ export default function Signin() {
                     </Form.Group>
 
                     <div className="d-grid">
-                      <Button
-                        className="general-btn "
-                        variant="primary"
-                        type="submit"
-                      >
+                      <Button className="general-btn" variant="primary" type="submit">
                         Signin
                       </Button>
                     </div>

@@ -10,10 +10,14 @@ export default function Home() {
   const [items, setitems] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-   
-   await   api("http://localhost:4000/item", "get", "","").then((data) => {
+      await api(
+        "http://localhost:4000/item",
+        "get",
+        "",
+        ""
+      ).then((data) => {
         console.log(data);
-        setitems(data)
+        setitems(data);
       });
     };
     fetchData();
@@ -23,10 +27,10 @@ export default function Home() {
       <Helmet>
         <title>Amazon</title>
       </Helmet>
-      <h1>list of item</h1>
+      <h1 className="mx-5">list of item</h1>
       <Row>
         <div className="d-flex flex-wrap justify-content-center">
-          {items.map((item, idx) => (
+          {items?.map((item, idx) => (
             <Col sm={6} md={4} lg={3} className="mb-3">
               <Item item={item} id={idx} descShow={false}></Item>
             </Col>

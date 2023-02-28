@@ -21,15 +21,17 @@ function CollapsibleNavBar() {
       variant="white"
     >
       <Container>
-        <Navbar.Brand className="nav" as={Link} to="/resty-app#/">
+        <Navbar.Brand className="nav" as={Link} to="/">
           MyShOp
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto "></Nav>
           <Nav className="d-flex align-items-center">
-      
-            <Nav.Link as={Link} to="/resty-app#/history">
+          <Nav.Link as={Link} to="/fav">
+            fav
+            </Nav.Link>
+            <Nav.Link as={Link} to="/itemstable">
              Items
             </Nav.Link>
 
@@ -38,7 +40,7 @@ function CollapsibleNavBar() {
                 Signout
               </Nav.Link>
             ) : (
-              <Nav.Link eventKey={2} href="/resty-app#/signin">
+              <Nav.Link eventKey={2} href="/signin">
                 Signin
               </Nav.Link>
             )}
