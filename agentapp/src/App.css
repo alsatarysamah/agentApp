@@ -27,14 +27,7 @@
 .App-link {
   color: #61dafb;
 }
-.site{
-  min-height: 95vh; 
-  font-family: 'Cairo', sans-serif;
-  font-size: larger;
- }
- main{
-  flex: 1;
- }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -43,3 +36,48 @@
     transform: rotate(360deg);
   }
 }
+.general-btn{
+  background-color: #FF577F;
+ color: #fffac8;
+
+  border: 0px;
+}
+.general-btn:hover{
+  background-color: #FFF9B0;
+ color: #FF577F;
+}
+
+.btn-add{
+  color: blue;
+}
+
+.table-horiz-scroll {
+  overflow-x:auto;
+ 
+}
+
+table {
+  table-layout: fixed;
+  
+  word-wrap: break-word;
+}
+table td{
+ text-align: center;
+
+}
+table th{
+  text-align: center;
+}
+
+  table th, table td {
+      overflow: hidden;
+  }
+  @media screen and (max-width: 1200px) {
+      body {
+        overflow: visible;
+      } table {
+          width: 769px !important;
+          font-size: small;
+      }
+  
+    }
